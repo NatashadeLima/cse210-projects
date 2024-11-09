@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSE 210 | Learning Activity - C# Prep 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../styles/course.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="page">
+      <h1>CSE 210<span id="coursetitle">: Programming with Classes</span></h1>
+      <img src="../images/byui-logo.svg" alt="BYU-I logo" class="logo">
+    </div>
+  </header>
+  <main class="page">
+    <nav id="autogen-top-nav">
+      <!-- This nav is auto-generated -->
+      <span><a href="../index.html">Home</a></span>
+      <span class="active"><a href="../week01/index.html">W1</a></span>
+      <span><a href="../week02/index.html">W2</a></span>
+      <span><a href="../week03/index.html">W3</a></span>
+      <span><a href="../week04/index.html">W4</a></span>
+      <span><a href="../week05/index.html">W5</a></span>
+      <span><a href="../week06/index.html">W6</a></span>
+      <span><a href="../week07/index.html">W7</a></span>
+      <!-- end auto-generated -->
+    </nav>
+    <h2>Learning Activity - C# Prep 3</h2>
+
+        <h3>Overview</h3>
+
+        <p>This activity will help you learn to work with loops in C#.</p>
+
+        <h3>Preparation Material</h3>
+
+        <h4>Loops</h4>
+        <p>C# provides four kinds of loops:</p>
+
+    <ul>
+     <li>while</li>
+     <li>do-while</li>
+     <li>for</li>
+     <li>foreach</li>
+    </ul>
+        <h5>While Loops</h5>
+        <p>While loops in C# work exactly the same way as in Python or other languages. The only difference is that C# uses curly braces <code>{}</code> to define the body of the loop, and the condition, must be surrounded by parentheses <code>()</code>.</p>
+
+        <p>C#</p>
+<pre><code class="csharp">
+string response = "yes";
+
+while (response == "yes")
+{
+    Console.Write("Do you want to continue? ");
+    response = Console.ReadLine();
+}
+</code></pre>
+
+        <p>Python</p>
+<pre><code class="python">
+response = "yes"
+
+while response == "yes":
+    response = input("Do you want to continue? ")
+</code></pre>
+
+
+        <h5>Do-While Loops</h5>
+        <p>Many languages have a construct called a do-while loop (Python does not). This loop works the same as a while loop, with the exception that the body of the loop runs once first, before the check is made for the first time. This means that the body of the loop is guaranteed to run at least once.</p>
+
+        <p>The syntax for a do-while loop is to use the keyword <code>do</code>, followed by the body, followed by the the <code>while</code> keyword with the expression <strong>and a semi-colon</strong> as shown:</p>
+
+<pre><code class="csharp">
+string response;
+
+do
+{
+    Console.Write("Do you want to continue? ");
+    response = Console.ReadLine();
+} while (response == "yes");
+</code></pre>
+
+        <h5>For Loops</h5>
+        <p>The standard <code>for</code> loop in C# is more like a "<code>for x in range</code>" loop in Python. The condition has three parts, separated by semi-colons. The first initializes the value, the second is the condition to check, and the third is an increment step that is run at the end of each loop.</p>
+
+        <p>The following code shows the syntax of a <code>for</code> loop that counts from 0 to 9.</p>
+
+<pre><code class="csharp">
+for (int i = 0; i &lt; 10; i++)
+{
+    Console.WriteLine(i);
+}
+</code></pre>
+
+        <p>In that code, you will see the use of the <code>++</code> operator which increments the value in the variable by one.</p>
+
+        <p>The code above is the most common way to see one of these loops, but you could put other values or statements in these spots, such as counting from 2 to 20 by two's:</p>
+
+<pre><code class="csharp">
+for (int i = 2; i &lt;= 20; i = i + 2)
+{
+    Console.WriteLine(i);
+}
+</code></pre>
+
+        <h5>Foreach Loops</h5>
+        <p>C# contains a foreach loop that is similar to a standard for loop in Python. It is important to remember that the iterator variable must have its type defined, just like when declaring any other variable:</p>
+
+<pre><code class="csharp">
+foreach (string color in colors)
+{
+    Console.WriteLine(color);
+}
+</code></pre>
+
+        <p>The foreach loop will be used extensively in the next preparation material that discusses lists.</p>
+
+        <h4>Random Numbers</h4>
+        <p>In addition, for this assignment you'll need to get a random number from the computer. In C#, this is done by creating an instance of the Random class, and then using it to get the next integer in a particular range.</p>
+
+<pre><code class="csharp">
+Random randomGenerator = new Random();
+int number = randomGenerator.Next(1, 11);
+</code></pre>
+
+        <h3>Assignment Instructions</h3>
+        <p>For this assignment, you will complete another assignment that you did previously in CSE 110, but in this case, <strong>write the program in C#</strong>:</p>
+
+        <h4>Program Specification</h4>
+        <p>Here are the instructions that you saw previously in CSE 110 that we will use as our program specification:</p>
+        <blockquote>
+          <h5>Overview</h5>
+          <p>In the Guess My Number game the computer picks a magic number, and then the user tries to guess it. After each guess, the computer tells the user to guess "higher" or "lower" until they guess the magic number.</p>
+  
+          <p>This assignment is a little tricky, because it brings together many of the concepts you've learned in this course including loops and if statements.</p>
+  
+          <h5>Core Requirements</h5>
+          <p>Work through these core requirements step-by-step to complete the program. Please don't skip ahead and do the whole thing at once, because many people benefit from seeing the program built up step by step.</p>
+          <ol>
+              <li>
+                  <p>Start by asking the user for the magic number. (In future steps, we will change this to have the computer generate a random number, but to get started, we'll just let the user decide what it is.)</p>
+                  <p>Ask the user for a guess.</p>
+                  <p>Using an if statement, determine if the user needs to guess higher or lower next time, or tell them if they guessed it.</p>
+                  <p>At this point, you won't have any loops.</p>
+              </li>
+              <p>The following shows the expected output at this point:</p>
+  
+  <pre><code class="plaintext">
+  What is the magic number? 6
+  What is your guess? 4
+  Higher
+  </code></pre>
+  
+  <pre><code class="plaintext">
+  What is the magic number? 6 
+  What is your guess? 7
+  Lower
+  </code></pre>
+  
+  <pre><code class="plaintext">
+  What is the magic number? 6
+  What is your guess? 6
+  You guessed it!
+  </code></pre>
+  
+              <li>
+                  <p>Add a loop that keeps looping as long as the guess does not match the magic number.</p>
+                  <p>At this point, the user should be able to keep playing until they get the correct answer.</p>
+              </li>
+  
+              <p>The following shows the expected output at this point:</p>
+  <pre><code class="plaintext">
+  What is the magic number? 18
+  What is your guess? 5
+  Higher
+  What is your guess? 6
+  Higher
+  What is your guess? 7
+  Higher
+  What is your guess? 20
+  Lower
+  What is your guess? 19
+  Lower
+  What is your guess? 18
+  You guessed it!
+  </code></pre>
+  
+              <li>
+                  <p>Instead of having the user supply the magic number, generate a random number from 1 to 100.</p>
+                  <p>Play the game and make sure it works!</p>
+              </li>            
+          </ol>
+  
+          <h5>Stretch Challenge</h5>
+          <ol>
+              <li><p>Keep track of how many guesses the user has made and inform them of it at the end of the game.</p></li>
+              <li><p>After the game is over, ask the user if they want to play again. Then, loop back and play the whole game again and continue this loop as long as they keep saying <code>"yes"</code>.</p></li>
+          </ol>        
+  
+        </blockquote>
+
+        <h4>Write and Test the program</h4>
+        <ol>
+            <li>Write and test the program as described above.</li>
+            <li>You should complete the 3 Core Requirements.</li>
+            <li>The stretch challenges are optional.</li>
+            <li>Make sure to use the same project template that you did for the previous activities. However, this time, you should add your code in <code>Program.cs</code> file in the the <code>Prep 3</code> project.</li>
+        </ol>
+
+        <h4>Sample Solution</h4>
+        <p>When you have finished the program, please compare your approach to the one from this sample solution:</p>
+
+        <ul>
+          <li><a href="https://github.com/byui-cse/cse210-ww-student-sample-solutions/blob/main/csharp-prep/Prep3/Program.cs" target="_blank">C# Prep 03 Sample Solution</a></p></li>
+        </ul>
+
+        <h3>Getting Help</h3>
+
+        <p>If you get stuck, please ask questions in MS Teams.</p>
+        
+        <h3>Submitting</h3>
+
+        <p>Return to Canvas and complete the corresponding quiz.</p>
+
+  </main>
+
+  <footer>
+    <p>Copyright &copy; Brigham Young University-Idaho | All rights reserved</p>
+  </footer>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</body>
+
+</html>

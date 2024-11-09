@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSE 210 | Learning Activity - C# Prep 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../styles/course.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="page">
+      <h1>CSE 210<span id="coursetitle">: Programming with Classes</span></h1>
+      <img src="../images/byui-logo.svg" alt="BYU-I logo" class="logo">
+    </div>
+  </header>
+  <main class="page">
+    <nav id="autogen-top-nav">
+      <!-- This nav is auto-generated -->
+      <span><a href="../index.html">Home</a></span>
+      <span class="active"><a href="../week01/index.html">W1</a></span>
+      <span><a href="../week02/index.html">W2</a></span>
+      <span><a href="../week03/index.html">W3</a></span>
+      <span><a href="../week04/index.html">W4</a></span>
+      <span><a href="../week05/index.html">W5</a></span>
+      <span><a href="../week06/index.html">W6</a></span>
+      <span><a href="../week07/index.html">W7</a></span>
+      <!-- end auto-generated -->
+    </nav>
+    <h2>Learning Activity - C# Prep 1</h2>
+
+
+        <h3>Overview</h3>
+        <p>Ensure that your tools are installed and that you can compile and run a basic program in C#.</p>
+
+        <p>C# (pronounced <em>C-Sharp</em>)is very similar to other procedural or objected-oriented programming languages, so if you have learned to program in one of them, you should be able to leverage the core concepts that you already know, and focus on the slight differences in syntax.</p>
+
+        <p>You should already be familiar with programming. This course assumes you are very comfortable with variables, loops, lists, conditionals (if statements), and functions. If you are not, you are not prepared to start this course.</p>
+
+        <h3>Preparation Material</h3>
+        <p>This material will outline some of the major differences between C# and Python, highlighting the pieces you'll need to complete this assignment.</p>
+
+        <p>In addition to the text here, you should consider the Web as a primary source for learning. Once you know what to do, but just not how to do it in a certain language, it's easy to search for "C# print statement" or "C# for loop" or even something more complicated like, "C# open file and read line by line". StackOverflow in particular is a great site to help you with these kinds of questions.</p>
+
+        <h4>C# Language Fundamentals</h4>
+        <p>C# uses the same concepts as Python, in terms of variables, loops, expressions, and so forth. Here are a few differences you need to be aware of:</p>
+
+        <h5>Defined types</h5>
+        <p>In C#, when a variable is declared, its data type must be specified. The computer then knows how much memory to allocate for it. Once a variable's type is defined, it cannot be changed later.</p>
+
+        <p>You declare a variable, by specifying the type. Later, when you use the variable, you do not need to specify the type again.</p>
+
+<pre><code class="csharp">
+int x;
+x = 5;
+Console.WriteLine(x);
+</code></pre>
+
+        <p>You can also declare a variable an initialize it in one statement:</p>
+
+<pre><code class="csharp">
+int x = 5;
+Console.WriteLine(x);
+</code></pre>
+
+        <p>Common built-in variable types are:</p>
+    <ul>
+      <li><code>int</code> - Integers (whole numbers, positive and negative)</li>
+      <li><code>string</code> - Strings (a sequence of characters, including letters, numbers, or symbols)</li>
+      <li><code>float</code> - Floating point numbers (numbers that use decimals)</li>
+      <li><code>double</code> - Double precision floating point numbers (just like a <code>float</code>, except it takes up twice as much memory, so it can hold larger numbers or numbers with more decimal places)</li>
+      <li><code>bool</code> - Boolean variables (true or false)</li>
+    </ul>
+        <h5>Input and Output</h5>
+        <p>In C#, to print, or write something as output to the console, you use the <code>Console.WriteLine("")</code> function.</p>
+
+        <p>Python</p>
+<pre><code class="python">
+print("Hello World!")
+</code></pre>
+
+        <p>C#</p>
+<pre><code class="csharp">
+Console.WriteLine("Hello World!");
+</code></pre>
+
+<code>Console.WriteLine("")</code> will print, or write, a full line, including the new line. If you do not want a new line at the end, you can use <code>Console.Write("")</code> to display the text with no newline afterward.
+
+<pre><code class="csharp">
+Console.Write("There will not be a newline after this.");
+</code></pre>
+
+        <p>To get input from the user in C#, use the <code>Console.ReadLine()</code> function, which will return a string that comes from whatever the user typed. Please note that it is a <code>string</code> (not an integer or floating point number), and that you need to use <code>Console.ReadLine()</code> <strong><em>not</em></strong> <code>Console.Read()</code>.</p>
+
+        <p>Also, please be aware that, unlike <code>input</code> in Python, you do not provide the text of the prompt to the <code>Console.ReadLine()</code> function in C#, so you must display it first with <code>Console.Write("")</code>.</p>
+
+        <p>Python</p>
+<pre><code class="python">
+color = input("What is your favorite color? ")
+</code></pre>
+
+        <p>C#</p>
+<pre><code class="csharp">
+Console.Write("What is your favorite color? ");
+string color = Console.ReadLine();
+</code></pre>
+
+        <h5>Curly braces define blocks</h5>
+        <p>In C#, curly braces <code>{}</code> define the body of an <code>if</code> statement or a function. In Python, the body is defined by indenting. In C#, you still indent the body, but this is only a convention, the actual mechanism to define the body is the curly braces <code>{}</code>.</p>
+
+        <p>Also, in C#, you do <strong>not</strong> use a colon <code>:</code> to start the body, and when using if statements, you must always put the condition in parentheses <code>()</code>.</p>
+
+        <p>C#</p>
+<pre><code class="csharp">
+if (x > y)
+{
+  Console.WriteLine("greater");
+}
+</code></pre>
+
+        <p>Python</p>
+<pre><code class="python">
+if x > y:
+  print("greater")
+</code></pre>
+
+        <h5>Statements end in semicolons</h5>
+        <p>As you may have noticed above, in C#, statements end with the semicolon <code>;</code> character. Typically one statement will be one line, however, sometimes you may have a long statement that extends on multiple lines until the semicolon <code>;</code> is reached.</p>
+
+        <p>The rule to end statements with semicolons applies to statements such as calling a function, declaring a variable, setting a variable, and so forth. You do <strong>not</strong> put a semicolon between the condition of an <code>if</code> statement and its body, or the name of a function and its body.</p>
+
+        <h5>String Interpolation</h5>
+        <p>In C#, if you would like to use a variable inside a string, you start the string with a dollar sign <code>$</code> in the same way that in Python, you start a format string with an <code>f</code>.</p>
+
+        <p>Python</p>
+<pre><code class="python">
+school = "BYU-Idaho"
+print(f"I am studying at {school}.")
+</code></pre>
+
+        <p>C#</p>
+<pre><code class="csharp">
+string school = "BYU-Idaho";
+Console.WriteLine($"I am studying at {school}.");
+</code></pre>
+
+        <h4>Video Demo</h4>
+        <p>These fundamentals are demonstrated in the following video:</p>
+
+        <div class="callout info">
+            <p>These videos mention using the <code>dotnet new</code> command to start a project, which can be done. However, in this course, you are provided with a project shell already in the GitHub template repository, so you don't have to worry about that.</p>
+            <p>Also, as you'll see, the dotnet new command inserts a <code>namespace</code> around your code. This is important for larger projects, but to keep things simple the starting templates we will use in this class will not use namespaces.</p>
+            </div>
+
+<figure class="video-container">
+<iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_m7mjbpfh&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_xuvpuww7" width="600" height="400" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Kaltura Player"></iframe>
+</figure>
+
+
+        <details>
+            <summary>What is all that other stuff? (Optional)</summary>
+        <p>As you noticed, when you start a new program in C# there is a lot of other code on the screen. You'll learn more about what all these things do in more detail as the semester progresses. At this point, it's enough to know that the program starts with the <code>Main</code> function.</p>
+
+        <p>If you would like a brief overview of what each of these basic program components does, you may watch the following video (optional):</p>
+
+        <p>Optional Video:</p>
+        <figure class="video-container">
+        <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_3k127eyk&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_c59kg3os" width="600" height="400" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Kaltura Player"></iframe>
+        </figure>
+
+        </details>
+
+
+        <h3>Assignment Instructions</h3>
+
+        <div class="callout info">
+            <h4>Learning activities</h4>
+            <p>As you will see, each learning activity in this course will have two components, they begin with preparation material to read or watch, and then there is a small programming assignment where you practice the concepts you have just read.</p>
+            
+            <p>You need to finish this assignment and then return to Canvas to report on your work.</p>
+        </div>
+
+        <p>Now that you have seen basic C# syntax, complete the following assignment. This was a program you completed earlier in CSE 110, but in this case, you will <strong>write the program in C#</strong>.</p>
+
+        <h4>Getting the Project Template</h4>
+        <ol>
+          <li>If you haven't already done so, please refer to the instructions on the <a href="./prepare-tools.html">Development Environment Setup</a> page to make sure that your computer is prepared for this course and that you have cloned the project template to your computer.</li>
+
+          <li>Open your project in VS Code.</li>
+  
+          <li>Then, in VS Code, navigate to the <code>csharp-prep/Prep1</code> folder and click on <code>Program.cs</code>. This is the file you will be editing for this project.</li>
+  
+          <li>On the "Run and Debug" menu, select "C# Prep 1" from the dropdown menu and click the green play button to run the program. In the terminal window, it should display the text <code>Hello Prep 1 World!</code>.</li>
+        </ol>
+        
+        <h4>Program Specification</h4>
+        <p>Here are the instructions that you saw previously in CSE 110 that we will use as our program specification:</p>
+        <blockquote>
+
+
+            <h5>Overview</h5>
+            <p>An iconic line from the James Bond movies is that he would introduce himself as "Bond, James Bond." For this assignment you will write a program that asks for your name and repeats it back in this way.</p>
+    
+            <h5>Assignment</h5>
+            <p>Prompt the user for their first name. Then, prompt them for their last name. Display the text back all on one line saying, "Your name is last-name, first-name, last-name" as shown:</p>
+            
+<pre><code class="bash">
+What is your first name? <span class="user-input">Scott</span>
+What is your last name? <span class="user-input">Burton</span>
+
+Your name is Burton, Scott Burton.
+</code></pre>
+
+<pre><code class="bash">
+What is your first name? <span class="user-input">Brigham</span>
+What is your last name? <span class="user-input">Young</span>
+
+Your name is Young, Brigham Young.
+</code></pre>
+            
+                    <p><em>Make sure to be precise!</em> You should have the spacing, comma, and period appear exactly as shown in the examples.</p>            
+
+        </blockquote>
+
+        <h4>Finish the program</h4>
+        <p>Write and test the program as defined above.</p>
+
+        <div class="callout warning">
+          <p><strong>Warning</strong>: Do not ever click "Debug Anyway".</p>
+          <p>If you have an error in your program and try to run it, VS Code will tell you that it cannot build a new version of your program to run. But, it may find an old version from the last time it successfully built the program. If you click "Debug Anyway" it will run the old version.</p>
+          <p>If you "Debug Anyway" you will be running a program that is different from your current code. This leads to lots of confusion, because you might make changes to your code, but the program does not show the changes.</p>
+          <p>To avoid these pitfalls, you should never click "Debug Anyway" instead, click "Abort" and track down your errors, or click "Show Errors" to go directly to them.</p>
+        </div>
+
+        <h4>Sample solution</h4>
+        <p>When you have finished the program, please compare your approach to the one from this sample solution:</p>
+
+        <ul>
+          <li><a href="https://github.com/byui-cse/cse210-ww-student-sample-solutions/blob/main/csharp-prep/Prep1/Program.cs" target="_blank">C# Prep 01 Sample Solution</a></p></li>
+        </ul>
+
+
+        <div class="callout info">
+          <p>If you are having difficulty with this and future programs, you are welcome to look at the sample solution to help you finish it. Remember, though that the goal is for you to learn how to write code on your own, and often we learn this best by working through a number of things that don't work, before we find the one that does work. So don't jump in here too quickly.</p>
+          <p>Also, you should make sure that you <strong>type</strong> every line of code yourself. Do not copy and paste this code. It is important for your learning that you practice writing every line of code.</p>
+        </div>
+
+        <h3>Getting Help</h3>
+        <p>If you need help, please ask questions in MS Teams!</p>
+
+        <p>Also, if you are still having difficulty, the following video walks through this complete assignment from start to finish including pushing it to GitHub.</p>
+
+        <p>Direct Link: <a href="https://video.byui.edu/media/t/1_1bulammf">C# Prep 1 Walkthrough</a> (9 minutes)</p>
+<figure class="video-container">
+  <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_1bulammf&flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_4npzllq4" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="CSE 210 - C# Prep 1 Walkthrough"></iframe>
+</figure>
+
+        <h3>Submitting</h3>
+        <p>Return to Canvas and complete the corresponding quiz.</p>
+
+
+  </main>
+
+  <footer>
+    <p>Copyright &copy; Brigham Young University-Idaho | All rights reserved</p>
+  </footer>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</body>
+
+</html>

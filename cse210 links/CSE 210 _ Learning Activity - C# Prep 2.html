@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSE 210 | Learning Activity - C# Prep 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../styles/course.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="page">
+      <h1>CSE 210<span id="coursetitle">: Programming with Classes</span></h1>
+      <img src="../images/byui-logo.svg" alt="BYU-I logo" class="logo">
+    </div>
+  </header>
+  <main class="page">
+    <nav id="autogen-top-nav">
+      <!-- This nav is auto-generated -->
+      <span><a href="../index.html">Home</a></span>
+      <span class="active"><a href="../week01/index.html">W1</a></span>
+      <span><a href="../week02/index.html">W2</a></span>
+      <span><a href="../week03/index.html">W3</a></span>
+      <span><a href="../week04/index.html">W4</a></span>
+      <span><a href="../week05/index.html">W5</a></span>
+      <span><a href="../week06/index.html">W6</a></span>
+      <span><a href="../week07/index.html">W7</a></span>
+      <!-- end auto-generated -->
+    </nav>
+    <h2>Learning Activity - C# Prep 2</h2>
+
+        <h3>Overview</h3>
+
+        <p>This activity will help you learn to work with variables and conditional statements in C#.</p>
+
+        <h3>Preparation Material</h3>
+        <h4>Conditionals</h4>
+        <p>C# uses <code>if</code> statements just Python, but the syntax is slightly different.</p>
+
+        <h5>If Statements</h5>
+        <p>First, the condition of the <code>if</code> statement must be put in parentheses <code>()</code>. Then, to define the body of the <code>if</code> statement, you still indent by convention, but it is the curly braces <code>{}</code> that define the body. (You also do not use the colon <code>:</code> that Python does to start the block.)</p>
+
+        <p>C#</p>
+<pre><code class="csharp">
+if (x > y)
+{
+    Console.WriteLine("greater than");
+}
+</code></pre>
+
+        <p>Python</p>
+<pre><code class="python">
+if x > y:
+    print("greater than")
+</code></pre>
+
+        <p>Notice that the convention in C# is to put the curly braces <code>{}</code> on their own lines. There are religious debates about "the one true bracing style," but putting them on their own line is the defined convention for C#, so that's what you should follow.</p>
+
+        <p>If you put one block of code inside another, it should be indented as follows:</p>
+
+<pre><code class="csharp">
+if (x > y)
+{
+    if (x > z)
+    {
+        Console.WriteLine("greater than both");
+    }
+}
+</code></pre>
+    
+        <h5>Else and Else If</h5>
+        <p>C# supports <code>else</code> and <code>else if</code>, similar to <code>else</code> and <code>elif</code> in Python.</p>
+
+        <p>The else condition defines a body, just like the if condition:</p>
+
+        <p>C#</p>
+<pre><code class="csharp">
+if (x > y)
+{
+    Console.WriteLine("greater than");
+}
+else
+{
+    Console.WriteLine("less than");
+}
+</code></pre>
+
+        <p>Python</p>
+<pre><code class="python">
+if x > y:
+    print("greater than")
+else:
+    print("less than")
+</code></pre>
+
+        <p>The else if condition also defines its body in the same fashion. Please note that in C#, the keywords are <code>else if</code> not <code>elif</code>:</p>
+
+        <p>C#</p>
+<pre><code class="csharp">
+if (x > y)
+{
+    Console.WriteLine("greater than y");
+}
+else if (x > z)
+{
+    Console.WriteLine("greater than z");
+}
+else
+{
+    Console.WriteLine("less than both");
+}
+</code></pre>
+
+        <p>Python</p>
+<pre><code class="python">
+if x > y:
+    print("greater than y")
+elif x > z:
+    print("greater than z")
+else:
+    print("less than both")
+</code></pre>
+
+        <h5>Operators</h5>
+        <p>C# uses the <code>==</code> operator to check if two variables are equal, just like in Python. It also supports other operators you are familiar with, such as <code>!=</code>, <code>>=</code>, <code><=</code>, and so forth:</p>
+
+<pre><code class="csharp">
+if (name == "John")
+{
+    Console.WriteLine("The name is John");
+}
+</code></pre>
+
+<pre><code class="csharp">
+if (color != favoriteColor)
+{
+    Console.WriteLine("That color is not my favorite");
+}
+</code></pre>
+
+        <h5>And, Or, and Not Operators</h5>
+        <p>In C#, the <strong>and</strong> operator is <code>&&</code> the <strong>or</strong> operator is <code>||</code> and the <strong>not</strong> operator is <code>!</code> which can be combined together with other expressions and parentheses.</p>
+
+<pre><code class="csharp">
+if (name == "Peter" || name == "James" || name == "John")
+{
+    Console.WriteLine("This is a biblical name.");
+}
+</code></pre>
+
+
+<pre><code class="csharp">
+if (firstName == "Brigham" && lastName == "Young")
+{
+    Console.WriteLine("Welcome Brother Brigham!");
+}
+</code></pre>
+
+<pre><code class="csharp">
+if (!(name == "Peter" || name == "James" || name == "John"))
+{
+    Console.WriteLine("This is a not one of those three");
+}
+</code></pre>
+
+        <h4>Variables and Types</h4>
+        <p>In C#, the naming convention for variables is to use "camel case." This means that the variable starts with a lower case letter and then additional words in the variable start with an upper case letter like humps on a camel:</p>
+
+<pre><code class="csharp">
+string color;
+string firstName;
+string lastName;
+int velocityBeforeImpactWasMade;
+</code></pre>
+        <h5>Converting Types</h5>
+        <p>As mentioned before, in C#, all variables must have their data type defined when the variable is first declared. Once defined, variables cannot change type, so you cannot set a variable to an integer first and later reassign it to a string.</p>
+
+        <p>You can, however convert a the value of a variable to a different type. For example, you can create an integer from the digits stored in a string using the <code>int.Parse()</code> function.</p>
+
+<pre><code class="csharp">
+string valueInText = "42";
+int number = int.Parse(valueInText);
+</code></pre>
+
+        <p>This is especially important if the value comes from the user via a <code>Console.ReadLine()</code> statement, which always returns a string:</p>
+
+<pre><code class="csharp">
+Console.Write("What is your favorite number? ");
+string userInput = Console.ReadLine();
+int number = int.Parse(userInput);
+</code></pre>
+
+        <p>If the user typed in something other than a number, this would result in type of error called a Runtime Exception.</p>
+
+        <h5>Numbers to Strings</h5>
+        <p>Similarly, an integer can be converted to a string using the <code>.ToString()</code> function of the variable.</p>
+
+<pre><code class="csharp">
+int number = 42;
+string textVersion = number.ToString();
+</code></pre>
+
+        <h4>Video Demo</h4>
+        <p>These fundamentals are demonstrated in the following video:</p>
+
+        <figure class="video-container">
+            <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_78d651c6&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_g7vjr2ui" width="600" height="400" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Kaltura Player"></iframe>
+        </figure>
+
+
+        <h3>Assignment Instructions</h3>
+        <p>For this assignment, you will complete another assignment that you did previously in CSE 110, but in this case, <strong>write the program in C#</strong>:</p>
+
+        <h4>Program Specification</h4>
+        <p>Here are the instructions that you saw previously in CSE 110 that we will use as our program specification:</p>
+        <blockquote>
+            <h5>Overview</h5>
+            <p>Write a program that determines the letter grade for a course according to the following scale:</p>
+    
+            <ul>
+                <li>A >= 90</li>
+                <li>B >= 80</li>
+                <li>C >= 70</li>
+                <li>D >= 60</li>
+                <li>F &lt; 60</li>
+            </ul>        
+    
+            <h5>Assignment</h5>
+            <p>Start by completing the core requirements, then when that part is complete, if you have time, see if you can complete some of the stretch challenges as well.</p>
+    
+            <p>Please work through the requirements <strong>in order</strong> rather than jumping ahead to more complicated steps, to ensure that everyone is following the concepts.</p>
+    
+            <h5>Core Requirements</h5>
+            <ol>
+                <li><p>Ask the user for their grade percentage, then write a series of <code>if-elif-else</code> statements to print out the appropriate letter grade. (At this point, you'll have a separate print statement for each grade letter in the appropriate block.)</p></li>
+    
+                <li><p>Assume that you must have at least a 70 to pass the class. After determining the letter grade and printing it out. Add a separate if statement to determine if the user passed the course, and if so display a message to congratulate them. If not, display a different message to encourage them for next time.</p></li>
+    
+                <li>
+                    <p>Change your code from the first part, so that instead of printing the letter grade in the body of each <code>if</code>, <code>elif</code>, or <code>else</code> block, instead create a new variable called <code>letter</code> and then in each block, set this variable to the appropriate value. Finally, after the whole series of <code>if-elif-else</code> statements, have a single print statement that prints the letter grade once.</p>
+                </li>
+            </ol>
+    
+            <h5>Stretch Challenge</h5>
+            <ol>
+                <li>
+                    <p>Add to your code the ability to include a "+" or "-" next to the letter grade, such as <em>B+</em> or <em>A-</em>. For each grade, you'll know it is a "+" if the last digit is >= 7. You'll know it is a minus if the last digit is < 3 and otherwise it has no sign.</p>
+    
+                    <p>After your logic to determine the grade letter, add another section to determine the sign. Save this sign into a variable. Then, display both the grade letter and the sign in one print statement.</p>
+    
+                    <p>Hint: To get the last digit, you could divide the number by 10, and get the remainder. You might review the standard math operators and find the one that does division and gives you the remainder.</p>
+    
+                    <p>At this point, don't worry about the exceptional cases of <em>A+</em>, <em>F+</em>, or <em>F-</em>.</p>
+                </li>
+                
+                <li><p>Recognize that there is no <em>A+</em> grade, only <em>A</em> and <em>A-</em>. Add some additional logic to your program to detect this case and handle it correctly.</p></li>
+    
+                <li><p>Similarly, recognize that there is no <em>F+</em> or <em>F-</em> grades, only <em>F</em>. Add additional logic to your program to detect these cases and handle them correctly.</p></li>
+            </ol>        
+    
+        </blockquote>
+
+        <h4>Write and Test the program</h4>
+        <ol>
+            <li>Write and test the program as described above.</li>
+            <li>You should complete the 3 Core Requirements.</li>
+            <li>The stretch challenges are optional.</li>
+            <li>Make sure to use the same project template that you did for the C# Prep 1 activity. However, this time, you should add your code in <code>Program.cs</code> file in the the <code>Prep 2</code> project.</li>
+        </ol>
+
+        <h4>Sample Solution</h4>
+        <p>When you have finished the program, please compare your approach to the one from this sample solution:</p>
+
+        <ul>
+          <li><a href="https://github.com/byui-cse/cse210-ww-student-sample-solutions/blob/main/csharp-prep/Prep2/Program.cs" target="_blank">C# Prep 02 Sample Solution</a></p></li>
+        </ul>
+
+        <h3>Getting Help</h3>
+
+        <p>If you get stuck, please ask questions in MS Teams.</p>
+
+        <h3>Submitting</h3>
+        <p>Return to Canvas and complete the corresponding quiz.</p>
+
+
+  </main>
+
+  <footer>
+    <p>Copyright &copy; Brigham Young University-Idaho | All rights reserved</p>
+  </footer>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</body>
+
+</html>
