@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSE 210 | Inheritance Learning Activity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../styles/course.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="page">
+      <h1>CSE 210<span id="coursetitle">: Programming with Classes</span></h1>
+      <img src="../images/byui-logo.svg" alt="BYU-I logo" class="logo">
+    </div>
+  </header>
+  <main class="page">
+    <nav id="autogen-top-nav">
+      <!-- This nav is auto-generated -->
+      <span><a href="../index.html">Home</a></span>
+      <span><a href="../week01/index.html">W1</a></span>
+      <span><a href="../week02/index.html">W2</a></span>
+      <span><a href="../week03/index.html">W3</a></span>
+      <span><a href="../week04/index.html">W4</a></span>
+      <span class="active"><a href="../week05/index.html">W5</a></span>
+      <span><a href="../week06/index.html">W6</a></span>
+      <span><a href="../week07/index.html">W7</a></span>
+      <!-- end auto-generated -->
+    </nav>
+    <h2>Inheritance Learning Activity</h2>
+
+    <h3>Overview</h3>
+    <p>In this activity you will learn and practice the principle of Inheritance.</p>
+
+    <h3>Prepare</h3>
+
+    <h4 id="what-is-inheritance">What is Inheritance?</h4>
+    <p>Inheritance is the ability for one class to obtain the attributes and methods of another class directly, without having to type them. It follows the same idea of people inheriting certain characteristics from their parents.</p>
+    <p>Consider two classes, a <code>Person</code> and a <code>Student</code>. A person may have a certain set attributes and methods that all people share, such as <code>GetName()</code>. A student <em>is a</em> person, so the student should have all the properties and behaviors that a person does, but then a student may have other more specific items, such as a student ID number, which could be accessed via a <code>GetNumber()</code> method. In this case, we could have the Student class inherit all Person class functionality, and then add to it.</p>
+    
+    <p>Consider the following code.</p>
+<pre><code class="csharp">
+// a regular class called Person
+public class Person
+{
+    public string GetName()
+    {
+        return "Joseph";
+    }
+}
+
+// a class that inherits from Person
+public class Student : Person
+{
+    public string GetNumber()
+    {
+        return "0123456789";
+    }
+}
+</code></pre>
+
+<pre><code class="csharp">
+// the student instance automatically has the GetName() method!
+Student student = new Student();
+string name = student.GetName();
+Console.WriteLine(name);
+</code></pre>
+
+    <p>Output:</p>
+<pre><code class="plaintext">
+Joseph
+</code></pre>
+
+    <p>In this case, the <code>Person</code> class is known as a <strong>parent</strong> class. The <code>Student</code> class is known as a <strong>child</strong> class. They are also called <strong>base</strong> and <strong>derived</strong> or <strong>super</strong> and <strong>sub</strong> classes.  It doesn't matter what pair of terms you use as long as you understand the principle.</p>
+    <p>The syntax for specifying an inheritance relationship is different from language to language but is always found in the declaration of the child class. In C#, when defining the name of the class, you use a colon followed by the name of the parent class. No other special syntax is required. </p>
+
+    <p>A class diagram showing this relationship shows the base class on top and the derived class beneath it. An arrow with an open arrowhead goes from the derived class to the base class.</p>
+    
+    <figure>
+      <img src="./images/person-class-diagram.png" alt="Class diagram showing inheritance">
+      <figcaption>Class diagram showing inheritance</figcaption>
+    </figure>
+
+
+
+    <p>The real benefit of inheritance is demonstrated in the last part of the example above. You are able to call the <code>GetName</code> method on an instance of <code>Student</code> even though it is not defined in that class. The <code>Student</code> class automatically got it by virtue of the inheritance relationship with <code>Person</code>.</p>
+    <h4 id="super-and-base">Super and Base</h4>
+    <p>In some circumstances, it is helpful to be able to call methods in a parent class from a child class. In C#, you use the <code>base</code> keyword. Consider the following code:</p>
+<pre><code class="csharp">
+// a parent class called Person
+public class Person
+{
+    private string _name;
+
+    public Person(string name)
+    {
+        _name = name;
+    }
+
+    public string GetName()
+    {
+        return _name;
+    }
+}
+
+// a child class called Student
+public class Student : Person
+{
+    private string _number;
+
+    // calling the parent constructor using "base"!
+    public Student(string name, string number) : base(name)
+    {
+      _number = number;
+    }
+
+    public string GetNumber()
+    {
+        return _number;
+    }
+}
+</code></pre>
+
+<pre><code class="csharp">
+Student student = new Student("Brigham", "234");
+string name = student.GetName();
+string number = student.GetNumber();
+Console.WriteLine(name);
+Console.WriteLine(number);
+</code></pre>
+
+<p>Output:</p>
+<pre><code class="plaintext">
+Brigham
+234
+</code></pre>
+
+    <p>In this example, the <code>Student</code> class inherits from the <code>Person</code> class. The <code>Student</code> constructor calls the <code>Person</code> constructor using the <code>base</code> keyword, and passes the name parameter through.</p>
+    <p>Note that <code>base</code> is not limited to constructors. We can use it anywhere in the derived class methods, with dot notation, to invoke a behavior in the parent class as the following example shows.</p>
+<pre><code class="csharp">
+string number = base.GetName();
+Console.WriteLine($"Student Number: {number}");
+</code></pre>
+
+    <h4>Accessing Private Data</h4>
+    <p>In the example above, the <code>Student</code> inherits the member variable <code>_name</code> from the base class, but because it is private, you cannot access <code>_name</code> directly in methods defined in the <code>Student</code> class. Consider a method for students called, <code>GetStudentInfo()</code> that returns both the student's name and id number. You may want to write something like the following:</p>
+
+<pre><code class="csharp">
+public class Student : Person
+{
+    private string _number;
+
+    ...
+
+    public string GetStudentInfo()
+    {
+        // ERROR! This line doesn't work, because _name is private in the base class
+        return _name + " " + _number;
+    }
+}
+</code></pre>
+
+    <p>There are two ways to fix this problem. The first is to create a getter for the <code>_name</code> variable in the base class and then, in this method, you could call the getter to access the value.</p>
+
+    <p>The other approach is to make the variable accessible to the derived class. We have previously learned about <code>public</code> and <code>private</code>, but there is another level in between them called <code>protected</code>. Member variables and methods that are labeled as <code>protected</code> can be accessed by methods in the class as well as by methods in derived classes, but they cannot be accessed by code outside of these classes.</p>
+
+    <p>So which is better?</p>
+
+    <p>Generally speaking, we should try to limit the access to variables as much as possible, so because making a member variable <code>protected</code> rather than <code>private</code> increases access to it, it can open the door for more problems later. So it is usually better to leave the variable <code>private</code> and use the getter. There are cases, however, where this causes more problems than it helps and it makes sense to make the variable <code>protected</code> and access it directly in the derived class.</p>
+
+    <h4>Substitution and Is-A Relationships</h4>
+    <p>An important point to note with inheritance is that because a derived class "is a" more specific version of a super class (for example, a student "is a" person), not only does the derived class inherit all of the traits and behaviors of the super class, but you should be able to use the derived class anywhere you can use the super class.</p>
+
+    <p>For example, because a <code>Student</code> is a <code>Person</code>, any code that works with a <code>Person</code> object should be able to work with a <code>Student</code> object without breaking. This includes passing the <code>Student</code> object to functions that expect a <code>Person</code> object, as well as putting a <code>Student</code> object in a list of <code>Person</code> objects.</p>
+
+    <p>This concept of substitution will become even more important with principle of Polymorphism, which is the topic of the next lesson.</p>
+
+    <div class="callout info">
+      <h5>Liskov Substitution Principle</h5>
+      <p>The idea of being able to substitute a derived object in place of an inherited type is formally called the <em>Liskov Substitution Principle</em>, named after Barbara Liskov who introduced it at a conference in 1987.</p>
+
+      <p>You might also note that the Liskov Substitution Principle is the "L" of the popular <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank">SOLID design principles</a> of object oriented programming.</p>
+    </div>
+
+
+    <h4 id="video-demonstrations">Video Demonstrations</h4>
+    <p>Please watch the following videos that discuss these concepts in more detail:</p>
+    <p>Inheritance (8 minutes) (<a href="https://video.byui.edu/media/t/1_xdew8t7r">Direct link</a>)</p>
+    <figure class="video-container">
+    <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_xdew8t7r&flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_grh4g5mi" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Inheritance Intro"></iframe>
+    </figure>
+
+    <p>Inheritance in C# (7 minutes) (<a href="https://video.byui.edu/media/t/1_luemyjq1">Direct link</a>)</p>
+    <figure class="video-container">
+    <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_luemyjq1&flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_bfbj2gts" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Inheritance in C# Demo"></iframe>
+    </figure>
+
+    <p>Inheritance Details in C# (8 minutes) (<a href="https://video.byui.edu/media/t/1_lzxk0qgp">Direct link</a>)</p>
+    <figure class="video-container">
+    <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1157612/sp/115761200/embedIframeJs/uiconf_id/41338032/partner_id/1157612?iframeembed=true&playerId=kaltura_player&entry_id=1_lzxk0qgp&flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_wybbwq3h" width="400" height="285" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Inheritance Details in C#"></iframe>
+    </figure>
+
+    <h4 id="a-word-of-caution">A Word of Caution</h4>
+    <p>Inheritance is a powerful principle that can save many hours of coding. However, overusing it may lead to problems. Consider a long inheritance chain of 10, 15, 20 or even more classes! It can be extremely difficult and time consuming to inspect a long inheritance hierarchy just to understand a single class at the bottom. </p>
+    <p>Patrick Wyatt, a long time game developer, wrote about this problem in a blog post called, <a href="https://www.codeofhonor.com/blog/tough-times-on-the-road-to-starcraft">Tough times on the road to Starcraft</a>. Inheritance belongs in programs with classes. However, Mr. Wyatt's experience is very instructive. </p>
+    <p>Opinions vary, but a good rule of thumb is to limit inheritance levels to the average number of items a person can remember at once. For most people, that means three or four. If you find yourself creating more, stop and ask the question, "Do I actually need a different abstraction?"</p>
+
+    <h4 id="closing-thoughts">In Summary</h4>
+    <p>Inheritance is the third principle of programming with classes. The key to understanding it is to remember that inheritance is mechanism for code reuse. Instead of writing the same thing over and over again we can simply inherit from one class to another. </p>
+
+    <p>Be careful though. As a certain uncle once said to his budding superhero nephew, "with great power comes great responsibility!" Discipline yourself in how you apply inheritance. Keep your hierarchies shallow and manageable. You'll be able to add more functionality in less time all while ensuring your program stays maintainable.</p>
+
+    <h3 class="step-reset">Activity Instructions</h3>
+    <p>Practice the principle of inheritance by creating a base class and derived classes.</p>
+    <p>For this activity, you will write classes to represent different kinds of homework assignments. Consider the following example of Math and writing assignments.</p>
+
+    <h5>Math Assignments</h5>
+    <p>A Math assignment may need to store the student's name, the topic (for example, "Fractions"), the textbook section (for example, "7.3"), and the problems from that section (for example, "3-10, 20-21").</p>
+
+    <p>The Math assignment should have a constructor that requires a value for each of the items that it stores.</p>
+    
+    <p>The Math assignment needs to provide a method to return a summary of the assignment that contains the student's name and the topic, and it also needs to provide a method to display the Math homework list including the section number and the problems (for example, "Section 7.3 Problems 8-19").</p>
+
+    <h5>Writing Assignments</h5>
+    <p>A writing assignment may need to store the student's name, the topic (for example, "European History"), and the title of the assignment (for example, "The Causes of World War II").</p>
+    
+    <p>The writing assignment should have a constructor that requires a value for each of the items that it stores.</p>
+
+    <p>The writing assignment needs to provide a method to return a summary of the assignment that contains the student's name and the topic, and it also needs to provide a method to get the writing information which consists of the title and the student's name (for example, "The Causes of World War II by Mary Waters").</p>
+
+    <h4 class="step">Design the Classes</h4>
+    <p>There are a number of things these classes have in common and a number of differences. Using inheritance, you can separate the things that change from the things that stay the same, putting the common elements in a base class and the differing elements in a derived class.</p>
+
+    <p>Consider the following class diagram:</p>
+
+    <figure>
+      <img src="./images/class_diagram_separate.png" alt="Class Diagram showing separate classes">
+      <figcaption>Class Diagram Without Inheritance</figcaption>
+    </figure>
+
+
+    <p>From these diagrams you can see that the <code>_studentName</code> and <code>_topic</code> attributes are the same in both classes, and so is the <code>GetSummary()</code> method. Instead of duplicating these items, you can create a base class that they both inherit from.</p>
+
+    <p>The following class diagram shows an approach that uses inheritance. This is the approach you will use for this assignment.</p>
+
+    <figure>
+      <img src="./images/class_diagram_inheritance.png" alt="Class Diagram showing inheritance">
+      <figcaption>Class Diagram Showing Inheritance</figcaption>
+    </figure>
+
+
+    <h4 class="step">Start the Project</h4>
+    <ol>
+      <li>Open the class project in VS Code.</li>
+      <li>Navigate to the <code>Learning05</code> project in the <code>prepare</code> directory. Find the <code>Program.cs</code> file, which will be your entry point for the program.</li>
+      <li>Verify that you can run the project.</li>
+    </ol>
+
+    <h4 class="step">Create the base class</h4>
+    <ol>
+      <li>Begin by creating a new file and a class for your base <code>Assignment</code> class.</li>
+      <li>Add the attributes as private member variables.</li>
+      <li>Create a constructor for this class that receives a student name and topic and sets the member variables.</li>
+      <li>Add the method for <code>GetSummary()</code> to return the student's name and the topic.</li>
+      <li>Test your class by returning to the <code>Main</code> method in the <code>Program.cs</code> file. Create a simple assignment, call the method to get the summary, and then display it to the screen.</li>
+    </ol>
+
+<p>Sample Output</p>
+<pre><code class="plaintext">
+Samuel Bennett - Multiplication
+</code></pre>
+
+    <h3 class="step">Create the MathAssignment class</h3>
+    <ol>
+      <li>Create a new file for the <code>MathAssignment</code> class.</li>
+      <li>Create this class and make sure to specify that it inherits from the base <code>Assignment</code> class.</li>
+      <li>Add the attributes as private member variables. Make sure that you do not create new member variables for the ones you inherited from the base class.</li>
+      <li>Create a constructor for your class that accepts all four parameters, have it call the base class constructor to set the base class attributes that way.</li>
+      <li>Add the <code>GetHomeworkList()</code> method.</li>
+      <li>Test your class by returning to the <code>Main</code> method and creating a new <code>MathAssignment</code> object and set its values. Make sure to test both the <code>GetSummary()</code> and the <code>GetHomeworkList()</code> methods.</li>
+    </ol>
+
+<p>Sample Output</p>
+<pre><code class="plaintext">
+Roberto Rodriguez - Fractions
+Section 7.3 Problems 8-19
+</code></pre>
+
+    <h3 class="step">Create the WritingAssignment class</h3>
+    <ol>
+      <li>Follow the same pattern as before by creating a new file for the <code>WritingAssignment</code> class.</li>
+      <li>Create the class and set up the inheritance relationship.</li>
+      <li>Add the member variables and set up the constructor as you did for the <code>MathAssignment</code> class.</li>
+      <li>Add the <code>GetWritingInformation()</code> method.</li>
+      <li>
+        <p>Notice that this method needs to access the <code>_studentName</code> variable defined in the base class. Even though <code>WritingAssignment</code> class inherited this attribute, it is private, so you cannot access it directly in the derived class.</p>
+        <p>To get the data you need for the method you can either make the variable <code>protected</code> in the base class, or you can create a public <code>GetStudentName</code> method to return it.</p>
+      </li>
+      <li>Return to <code>Main</code> and test your new class.</li>
+    </ol>
+
+<p>Sample Output</p>
+<pre><code class="plaintext">
+Mary Waters - European History
+The Causes of World War II by Mary Waters
+</code></pre>
+
+    <h3>Sample Solution</h3>
+    <p>When you have finished please compare your approach to the following sample solution (you may also use this sample solution as a guide if you need help finishing).</p>
+
+    <ul>
+      <li><a href="https://github.com/byui-cse/cse210-ww-student-sample-solutions/tree/main/prepare/Learning05" target="_blank">Learning Activity 05 Sample Solution.</a></li>
+    </ul>
+
+
+    <h3>Submission</h3>
+    <ol>
+      <li>Verify that each of your classes works as described above.</li>
+      <li>Commit and push your code to your GitHub repository.</li>
+      <li>Verify that you can see your updated code at GitHub.</li>
+      <li>Submit the Canvas quiz to report on your work.</li>
+    </ol>
+
+  </main>
+
+  <footer>
+    <p>Copyright &copy; Brigham Young University-Idaho | All rights reserved</p>
+  </footer>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</body>
+
+</html>
