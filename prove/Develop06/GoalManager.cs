@@ -18,9 +18,9 @@ public class GoalManager
     {
         Goal goal = type switch
         {
-            "SimpleGoal" => new SimpleGoal(name, points),
-            "EternalGoal" => new EternalGoal(name, points),
-            "ChecklistGoal" => new ChecklistGoal(name, points, targetCount, 0, bonus),
+            "1" => new SimpleGoal(name, points),
+            "2" => new EternalGoal(name, points),
+            "3" => new ChecklistGoal(name, points, targetCount, 0, bonus),
             _ => throw new ArgumentException("Invalid goal type")
         };
 
